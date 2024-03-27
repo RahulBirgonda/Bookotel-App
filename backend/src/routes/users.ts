@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import User from "../models/user";
 import jwt from "jsonwebtoken";
 import { check, validationResult } from "express-validator";
+import verifyToken from "../middleware/auth";
 
 const router = express.Router();
 
@@ -20,6 +21,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ message: errors.array() });
     }
+
     try {
       let user = await User.findOne({
         email: req.body.email,
@@ -45,10 +47,10 @@ router.post(
         secure: process.env.NODE_ENV === "production",
         maxAge: 86400000,
       });
-      return res.sendStatus(200);
+      return res.status(200).send({ message: "User registered OK" });
     } catch (error) {
       console.log(error);
-      res.status(500).send({ message: "OOPS!! Something went wrong" });
+      res.status(500).send({ message: "Something went wrong" });
     }
   }
 );
