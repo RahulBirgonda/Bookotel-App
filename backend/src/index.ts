@@ -25,5 +25,5 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 
 app.listen(7000, () => {
-  console.log("Server started on port 7000...");
+  console.log("Server started on port 7000....");
 });
