@@ -2,10 +2,10 @@ import { useQuery } from "react-query";
 import * as apiClient from "../api-client";
 import { useState } from "react";
 import Pagination from "../components/Pagination";
-import StarRatingFilter from "../components/StarRatingFilter";
+import StarRatingFilter from "../components/StarRatingFilter.tsx";
 import FacilitiesFilter from "../components/FacilitiesFilter.tsx";
-import SearchResultsCard from "../components/SearchResultCard";
-import HotelTypesFilter from "../components/HotelTypesFilter";
+import SearchResultsCard from "../components/SearchResultCard.tsx";
+import HotelTypesFilter from "../components/HotelTypesFilter.tsx";
 import PriceFilter from "../components/PriceFilter.tsx";
 import { useSearchContext } from "../contexts/SearchContext.tsx";
 
