@@ -7,7 +7,7 @@ import FacilitiesFilter from "../components/FacilitiesFilter.tsx";
 import SearchResultsCard from "../components/SearchResultCard";
 import HotelTypesFilter from "../components/HotelTypesFilter";
 import PriceFilter from "../components/PriceFilter.tsx";
-import { useSearchContext } from "../contexts/SearchContext";
+import { useSearchContext } from "../contexts/SearchContext.tsx";
 
 const Search = () => {
   const search = useSearchContext();
