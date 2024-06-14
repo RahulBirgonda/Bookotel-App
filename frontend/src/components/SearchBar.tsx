@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { useSearchContext } from "../contexts/SearchContext";
+import { useSearchContext } from "../contexts/SearchContext.tsx";
 import { MdTravelExplore } from "react-icons/md";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
