@@ -20,39 +20,48 @@ const Detail = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-4 md:p-8 lg:p-12">
+      {/* Hotel Name and Rating */}
       <div>
-        <span className="flex">
-          {Array.from({ length: hotel.starRating }).map(() => (
-            <AiFillStar className="fill-yellow-400" />
-          ))}
-        </span>
         <h1 className="text-3xl font-bold">{hotel.name}</h1>
+        <div className="flex items-center mt-2">
+          {Array.from({ length: hotel.starRating }).map((_, index) => (
+            <AiFillStar key={index} className="text-yellow-400" />
+          ))}
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {hotel.imageUrls.map((image) => (
-          <div className="h-[300px]">
+      {/* Image Gallery */}
+      <div className="flex flex-col md:flex-row gap-4">
+        {hotel.imageUrls.map((image, index) => (
+          <div key={index} className="w-full md:w-1/3 h-64">
             <img
               src={image}
               alt={hotel.name}
-              className="rounded-md w-full h-full object-cover object-center"
+              className="rounded-md w-full h-full object-cover"
             />
           </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-2">
-        {hotel.facilities.map((facility) => (
-          <div className="border border-slate-300 rounded-sm p-3">
+      {/* Facilities */}
+      <div className="flex flex-wrap gap-2">
+        {hotel.facilities.map((facility, index) => (
+          <div
+            key={index}
+            className="bg-gray-200 border border-slate-300 rounded-lg p-2 text-center flex-grow"
+          >
             {facility}
           </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr]">
-        <div className="whitespace-pre-line">{hotel.description}</div>
-        <div className="h-fit">
+      {/* Description and Booking Form */}
+      <div className="flex flex-col lg:flex-row gap-6">
+        <div className="flex-1 whitespace-pre-line bg-white p-4 rounded-lg shadow-md">
+          {hotel.description}
+        </div>
+        <div className="w-full lg:w-1/3">
           <GuestInfoForm
             pricePerNight={hotel.pricePerNight}
             hotelId={hotel._id}

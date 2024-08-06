@@ -10,11 +10,11 @@ const GuestsSection = () => {
   return (
     <div>
       <h2 className="text-2xl font-bold mb-3">Guests</h2>
-      <div className="grid grid-cols-2 p-6 gap-5 bg-gray-300">
+      <div className="grid grid-cols-1 sm:grid-cols-2 p-4 sm:p-6 gap-4 sm:gap-5 bg-gray-200 rounded-md">
         <label className="text-gray-700 text-sm font-semibold">
           Adults
           <input
-            className="border rounded w-full py-2 px-3 font-normal"
+            className="border rounded w-full py-2 px-3 font-normal mt-1"
             type="number"
             min={1}
             {...register("adultCount", {
@@ -22,7 +22,7 @@ const GuestsSection = () => {
             })}
           />
           {errors.adultCount?.message && (
-            <span className="text-red-500 text-sm fold-bold">
+            <span className="text-red-500 text-sm font-bold">
               {errors.adultCount?.message}
             </span>
           )}
@@ -31,7 +31,7 @@ const GuestsSection = () => {
         <label className="text-gray-700 text-sm font-semibold">
           Children
           <input
-            className="border rounded w-full py-2 px-3 font-normal"
+            className="border rounded w-full py-2 px-3 font-normal mt-1"
             type="number"
             min={0}
             {...register("childCount", {
@@ -39,7 +39,7 @@ const GuestsSection = () => {
             })}
           />
           {errors.childCount?.message && (
-            <span className="text-red-500 text-sm fold-bold">
+            <span className="text-red-500 text-sm font-bold">
               {errors.childCount?.message}
             </span>
           )}

@@ -27,13 +27,18 @@ const ImagesSection = () => {
       <h2 className="text-2xl font-bold mb-3">Images</h2>
       <div className="border rounded p-4 flex flex-col gap-4">
         {existingImageUrls && (
-          <div className="grid grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {existingImageUrls.map((url) => (
-              <div className="relative group">
-                <img src={url} className="min-h-full object-cover" />
+              <div className="relative group" key={url}>
+                <img
+                  src={url}
+                  alt="Hotel"
+                  className="w-full h-32 object-cover rounded-md"
+                />
                 <button
                   onClick={(event) => handleDelete(event, url)}
-                  className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 text-white"
+                  className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 text-white transition-opacity duration-300 rounded-md"
+                  aria-label="Delete image"
                 >
                   Delete
                 </button>
@@ -46,7 +51,7 @@ const ImagesSection = () => {
           type="file"
           multiple
           accept="image/*"
-          className="w-full text-gray-700 font-normal"
+          className="w-full text-gray-700 font-normal border p-2 rounded-md"
           {...register("imageFiles", {
             validate: (imageFiles) => {
               const totalLength =
