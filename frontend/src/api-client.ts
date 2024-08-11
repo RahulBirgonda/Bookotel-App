@@ -68,14 +68,13 @@ export const validateToken = async () => {
 
 export const signOut = async () => {
   const response = await fetch(`${API_BASE_URL}/api/auth/logout`, {
-    method: "POST",
     credentials: "include",
+    method: "POST",
   });
 
   if (!response.ok) {
-    throw new Error("Token invalid");
+    throw new Error("Error during sign out");
   }
-  return response.json();
 };
 
 export const addMyHotel = async (hotelFormData: FormData) => {
@@ -88,6 +87,7 @@ export const addMyHotel = async (hotelFormData: FormData) => {
   if (!response.ok) {
     throw new Error("Failed to add hotel");
   }
+
   return response.json();
 };
 
@@ -99,6 +99,7 @@ export const fetchMyHotels = async (): Promise<HotelType[]> => {
   if (!response.ok) {
     throw new Error("Error fetching hotels");
   }
+
   return response.json();
 };
 
