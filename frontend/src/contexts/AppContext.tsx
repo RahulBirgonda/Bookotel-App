@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import * as apiClient from "../api-client";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
 
-const STRIPE_PUB_KEY = import.meta.env.VITE_STRIPE_PUB_KEY || "";
+const STRIPE_PUB_KEY = import.meta.env.VITE_STRIPE_PUB_KEY;
 
 type ToastMessage = {
   message: string;
@@ -19,7 +19,16 @@ type AppContext = {
 
 const AppContext = React.createContext<AppContext | undefined>(undefined);
 
-const stripePromise = loadStripe(STRIPE_PUB_KEY);
+// Ensure the publishable key is valid
+if (!STRIPE_PUB_KEY) {
+  console.error(
+    "Stripe publishable key is missing. Please set VITE_STRIPE_PUB_KEY in your environment variables."
+  );
+}
+
+const stripePromise = STRIPE_PUB_KEY
+  ? loadStripe(STRIPE_PUB_KEY)
+  : Promise.resolve(null);
 
 export const AppContextProvider = ({
   children,
@@ -56,5 +65,8 @@ export const AppContextProvider = ({
 
 export const useAppContext = () => {
   const context = useContext(AppContext);
-  return context as AppContext;
+  if (!context) {
+    throw new Error("useAppContext must be used within an AppContextProvider");
+  }
+  return context;
 };
